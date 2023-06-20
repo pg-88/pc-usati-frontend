@@ -56,8 +56,9 @@ const FAKE_DB_DATA =
                     memExpansion: true
                 }
             },
-        ],
-
+        ]
+    },
+    {
         laptop:
         [
             {
@@ -113,8 +114,9 @@ const FAKE_DB_DATA =
                 },
             }
 
-        ],
-
+        ]
+    },
+    {
         tablet: 
         [ 
             {
@@ -143,8 +145,9 @@ const FAKE_DB_DATA =
                     memExpansion: true
                 }
             },
-        ],
-        
+        ]
+    },
+    {
         chromebook:
         [
             {
@@ -173,9 +176,8 @@ const FAKE_DB_DATA =
                     gpu: 'invidiosa geForza 420M',
                 },
             }
-        ],
+        ]
     }
-]
-
+];
 
 export default FAKE_DB_DATA; 

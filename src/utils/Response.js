@@ -144,6 +144,7 @@ const FAKE_DB_DATA =
                 }
             },
         ],
+        
         chromebook:
         [
             {

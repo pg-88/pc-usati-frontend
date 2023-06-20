@@ -1,7 +1,9 @@
 import { useState } from "react";
+
 import Header from "./components/Header";
 import Section from "./components/Section";
 import ProdList from "./components/ProdList";
+
 import FAKE_DB_DATA from "./utils/Response";
 
 
@@ -15,11 +17,11 @@ export default function Shop(){
             onClick={e => {
                 console.log('aggiorno la categoria con useState:', e.target.id);
                 setCategory(e.target.id);
+                let products = FAKE_DB_DATA.find(cat => cat === category);
+                console.log(category)
+                console.log('selected category products', products);
             }}
             key={en.toString()}/>);
-    let products = FAKE_DB_DATA.filter(cat => cat === category);
-    console.log
-    console.log('selected category products', products);
 
     return(
         <div>

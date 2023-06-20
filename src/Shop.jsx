@@ -17,7 +17,7 @@ export default function Shop(){
             onClick={e => {
                 console.log('aggiorno la categoria con useState:', e.target.id);
                 setCategory(e.target.id);
-                let products = FAKE_DB_DATA.find(cat => cat === category);
+                let products = FAKE_DB_DATA.find(cat => cat === category.toString());
                 console.log(category)
                 console.log('selected category products', products);
             }}

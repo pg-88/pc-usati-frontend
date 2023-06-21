@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { createElement, useState } from "react";
 
 import Header from "./components/Header";
 import Section from "./components/Section";
 import ProdList from "./components/ProdList";
 
 import AVAILABLE_PROD  from "./utils/Response";
+import ReadImg from "./components/ReadImg";
 
 
 export default function Shop(){
@@ -22,10 +23,11 @@ export default function Shop(){
         console.log(e.currentTarget.id);
         setCategory(e.currentTarget.id);
     }
-    
+
 
     return(
         <div>
+            <ReadImg />
             <Header />
             {
                 catList.map(c => (
@@ -38,6 +40,7 @@ export default function Shop(){
             }
             <ProdList />
 
+            
         </div>
     );
 }

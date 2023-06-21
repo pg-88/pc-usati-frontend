@@ -1,9 +1,10 @@
 
 
-export default function Card(){
+export default function Card(prodObj){
 
     return(
-        <div>
+        <div className="prodCard">
+            
             
         </div>
     );

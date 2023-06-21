@@ -16,10 +16,23 @@ export default function Shop(){
         catList.push(p.type);
         });
     console.log('categorie prodotti: ', catList);
+    const switchCat = function (e) {
+        //uso currentTarget perché con target prende il titolo o il bottone
+        //in funzione della posizione in cui avviene il click
+        console.log(e.currentTarget.id);
+        setCategory(e.currentTarget.id);
+    }
     return(
         <div>
             <Header />
-
+            {
+                catList.map(c => (
+                    <Section 
+                        categoria={c} 
+                        onClick={e => switchCat(e)}
+                    />
+                ))
+            }
             <ProdList />
 
         </div>

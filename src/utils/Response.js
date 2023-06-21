@@ -197,7 +197,21 @@ const AVAILABLE_PROD =
             battery: '5600mAh',
             memExpansion: false
         }
-        
+    },
+    {
+        id: 'tr44322g50',
+        type: 'periferiche',
+        brand: 'fiducia',
+        model: 'g90',
+        price: 70,
+        promo: true,
+        discount: 5,
+        specs:
+        {
+            dpi: 240,
+            buttons: 7,
+            powerSupply: '2xAA battery'
+        }
     }
 ]
 

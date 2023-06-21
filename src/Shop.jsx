@@ -22,13 +22,16 @@ export default function Shop(){
         console.log(e.currentTarget.id);
         setCategory(e.currentTarget.id);
     }
+    
+
     return(
         <div>
             <Header />
             {
                 catList.map(c => (
                     <Section 
-                        categoria={c} 
+                        key={c.toString()}
+                        categoria={c}
                         onClick={e => switchCat(e)}
                     />
                 ))

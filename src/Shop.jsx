@@ -1,8 +1,9 @@
-import { createElement, useState } from "react";
+import { useState } from "react";
 
 import Header from "./components/Header";
 import Section from "./components/Section";
 import ProdList from "./components/ProdList";
+import Details from "./components/Details";
 
 import AVAILABLE_PROD  from "./utils/Response";
 import ReadImg from "./components/ReadImg";
@@ -12,18 +13,14 @@ export default function Shop(){
     const [category, setCategory] = useState('');
     let catList = [];
     AVAILABLE_PROD.forEach(p => {
-        catList.includes(p.type) ? 
-        console.log(`category ${p.type} alredy present`) :
-        catList.push(p.type);
+        if(!catList.includes(p.type)) catList.push(p.type);
         });
-    console.log('categorie prodotti: ', catList);
     const switchCat = function (e) {
         //uso currentTarget perché con target prende il titolo o il bottone
         //in funzione della posizione in cui avviene il click
-        console.log(e.currentTarget.id);
         setCategory(e.currentTarget.id);
     }
-
+    
 
     return(
         <div>
@@ -38,9 +35,8 @@ export default function Shop(){
                     />
                 ))
             }
-            <ProdList />
+            <ProdList arrProducts={AVAILABLE_PROD.filter(p => p.type === category)}/>
 
-            
         </div>
     );
 }

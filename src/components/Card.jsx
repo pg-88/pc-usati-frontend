@@ -6,7 +6,11 @@ export default function Card({prodObj}){
     return(
         <button 
         id={prodObj.id}
-        onClick={(event) => openModal(event)}
+        onClick={() => {
+            console.log(`cliccatto ${prodObj.id}`)
+
+        }
+    }
         className="prodCard"  
         >
             <h3>
@@ -21,6 +25,6 @@ export default function Card({prodObj}){
     );
 }
 
-function openModal(e){
-    document.getElementById("details-product").style.display = 'block';
-}
+// function openModal(e){
+    
+// }

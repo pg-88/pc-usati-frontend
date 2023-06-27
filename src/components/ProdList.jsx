@@ -1,8 +1,10 @@
 import Card from "./Card"
+import Details from "./Details";
 import "./ProdList.css"
 
 export default function ProdList({arrProducts}){
     let cards = [];
+    let clickedDetail = false;
     for(let i = 0; i < arrProducts.length; i++){
         cards.push(
             <Card 
@@ -10,9 +12,12 @@ export default function ProdList({arrProducts}){
                 className="gridElement"
                 prodObj={arrProducts[i]}
                 key={arrProducts[i].id}
-
+                onClick={e => generateDetail(e)}
             />)
     }
+
+
+
     return(
         <div 
             className="gridContainer"
@@ -21,4 +26,8 @@ export default function ProdList({arrProducts}){
             {cards}
         </div>
         );
+}
+
+function generateDetail(e){
+
 }

@@ -24,7 +24,7 @@ export default function Shop(){
 
     return(
         <div>
-            <ReadImg />
+            {/* <ReadImg /> */}
             <Header />
             {
                 catList.map(c => (

@@ -1,6 +1,6 @@
 # PC Usati Shop
 
-Esempio fatto per esercizio **di mia iniziativa non è stato suggerito da nessuno**
+Esempio fatto per esercizio che racchiude tutte le tematiche affrontate durante il corso.
 
 L'applicazione deve recuperare i dati dei prodotti in magazzino e visualizzarli in una pagina web.
 
@@ -18,5 +18,5 @@ Il carrello sarà una pagina (o sezione) a parte in cui saranno riportati tutti 
 ## React
 il branch master è l'esempio fatto usando la libreria react
 
-## ~~JavaScript~~
-~~il branch javaScript contiene lo stesso progetto svolto usando solo javascript~~
+## Javascript 
+**Se stai cercando il progetto in javascript puro** devi cambiare branch... [clicca qui](https://github.com/pg-88/pc-usati-frontend/tree/javascript)

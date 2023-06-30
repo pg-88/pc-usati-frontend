@@ -1,14 +1,10 @@
-export default function Details({specs, render}){
-
-
+export default function Details({specs}){
+    //crea la lista con i dettagli del prodotto
     return(
-        <div className="details">
-            <ul>
-                {specs.map((k,v) => 
-                    <li>{`${k.toString()}: ${v.toString()}`}</li>
-                )}
-            </ul>
-        </div>
+        <ul>
+            {specs.map(row => <li>{`${row[0]}: ${row[1]}`}</li>)}
+
+        </ul>
 
     )
 }

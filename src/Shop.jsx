@@ -3,14 +3,19 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import ProdList from "./components/ProdList";
-import Details from "./components/Details";
 
 import AVAILABLE_PROD  from "./utils/Response";
-import ReadImg from "./components/ReadImg";
+// import ReadImg from "./components/ReadImg";
 
 
 export default function Shop(){
+    /**Componente principale
+     * scorre l'array degli oggetti in vendita ed estrapola le categorie,
+     * genra un bottone (Section) per ogni categoria, cliccando su un bottone
+     * viene renderizzata la lista di prodotti di quella categoria.
+     */
     const [category, setCategory] = useState('');
+
     let catList = [];
     AVAILABLE_PROD.forEach(p => {
         if(!catList.includes(p.type)) catList.push(p.type);
@@ -20,8 +25,6 @@ export default function Shop(){
         //in funzione della posizione in cui avviene il click
         setCategory(e.currentTarget.id);
     }
-    
-
     return(
         <div>
             {/* <ReadImg /> */}

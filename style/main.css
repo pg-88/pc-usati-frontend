@@ -47,6 +47,7 @@ li {
   
 li button {
 display: block;
+background-color: burlywood;
 color: #2F2F0E;
 text-align: center;
 padding: 14px 16px;
@@ -57,6 +58,11 @@ li button:hover {
     background-color: #CBCB01;
 }
 
+main {
+    display: grid;
+    grid-template-columns:  auto auto;
+    padding-top: 15%;
+}
 @media only screen and (max-width: 600px) {
     #sub-header {
         display: none;

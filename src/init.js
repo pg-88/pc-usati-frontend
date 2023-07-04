@@ -20,9 +20,30 @@ export function startApp(){
         !categorie.includes(element.type) ? categorie.push(element.type) : undefined;
     });
 
-    console.log(document.body.lastElementChild);
-    document.body.lastElementChild.after(navbar(categorie));
-
+    //genero il main (unico ma verrà poi manipolato)
+    let mainEl = document.createElement('main');
+    //elementi per il main
+    let txt = document.createTextNode(
+        `Com'è bello usare i PC vecchi e fa bene all'ambiente!\n
+        inserire qui il testo green washing che fa vendere tanto di questi tempi:
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Leo integer malesuada nunc vel risus
+        commodo viverra maecenas. In ornare quam viverra orci sagittis eu volutpat odio facilisis. 
+        Nisi quis eleifend quam adipiscing vitae. Sollicitudin aliquam ultrices sagittis orci a scelerisque
+        purus semper. Congue mauris rhoncus aenean vel elit scelerisque mauris. 
+        Scelerisque viverra mauris in aliquam sem fringilla ut.   
+        Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus. 
+        Id diam maecenas ultricies mi. Sapien et ligula ullamcorper malesuada proin libero nunc.`
+        );
+    
+    let video = document.createElement('iframe');
+    video.width = 400;
+    video.height = 240;
+    video.src="https://www.youtube.com/embed/12zfutD9JxQ";
+    video.title = "Old PC Commercial"
+    video.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    mainEl.append(txt, video);
+    document.body.lastElementChild.after(navbar(categorie), mainEl);
 }
 
 let header = () => {
@@ -79,7 +100,7 @@ let navbar = (arrCat) => {
         list.append(item);
     })
     element.append(list);
-    
+
     return element;
 } 
 
@@ -93,6 +114,10 @@ function clickCat(id){
 }
 
 let cards = (arrProd) => {
+    /**card sono anchor che stanno nel main
+     * prima di tutto svuota il main, quindi genera gli elementi necessari
+     * per ogni card, quindi ritortna il main popolato dalle card.
+     */
     arrProd.forEach(p => {
         console.log(`Prodotto: ${p.type}, ${p.id}`);
     });

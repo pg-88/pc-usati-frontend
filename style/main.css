@@ -2,3 +2,15 @@
     margin: 0;
     background-color: antiquewhite;
 }
+
+.top-page {
+    font-weight: 300;
+    text-align: center;
+    
+}
+
+.sub-header {
+    text-decoration: wavy;
+    font-style: italic;
+    font-size: small;
+}

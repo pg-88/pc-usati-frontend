@@ -2,10 +2,15 @@
     margin: 0;
     background-color: antiquewhite;
 }
-
 .top-page {
+    background-color: rgb(252, 244, 173);
+    position: relative;
+    top: 15%;
     font-weight: 300;
-    text-align: center;
+    border-color: beige;
+    border-width: 30px;
+
+    
     
 }
 
@@ -13,4 +18,26 @@
     text-decoration: wavy;
     font-style: italic;
     font-size: small;
+}
+
+#logo {
+    background-color: rgb(252, 244, 173);
+    position: relative;
+    left: 25%;
+}
+
+@media only screen and (max-width: 600px) {
+    #sub-header {
+        display: none;
+    }
+}
+
+header {
+    padding: 4%;
+    margin: 2%;
+    display: grid;
+    grid-template-columns: auto auto;
+    left: auto;
+    right: auto;
+    width: 88%;
 }

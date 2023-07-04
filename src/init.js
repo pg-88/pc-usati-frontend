@@ -61,16 +61,25 @@ let navbar = (arrCat) => {
     let element = document.createElement('nav');
     element.id = "cat-nav";
     element.setAttribute('class', 'navbar');
+    let list = document.createElement('ul');
 
     arrCat.forEach(e => {
+        let item = document.createElement('li');
+        item.id = `item-${e.toString()}`;
+
         let btn = document.createElement('button');
         btn.id = e;
         btn.append(
             document.createTextNode(`Categoria ${e.toString().toUpperCase()}`)
         );
         btn.addEventListener('click', (e) => {clickCat(e.target.id)});
-        element.append(btn);
+        
+        //inserimento nella DOM
+        item.append(btn);
+        list.append(item);
     })
+    element.append(list);
+    
     return element;
 } 
 
@@ -81,4 +90,10 @@ function clickCat(id){
     console.log("prodotti trovati ", prods);
 
     cards(prods);
+}
+
+let cards = (arrProd) => {
+    arrProd.forEach(p => {
+        console.log(`Prodotto: ${p.type}, ${p.id}`);
+    });
 }

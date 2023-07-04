@@ -1,20 +1,18 @@
 * {
-    margin: 0;
+    margin: 2%;
     background-color: antiquewhite;
 }
 .top-page {
-    background-color: rgb(252, 244, 173);
+    background-color: #fcf4ad;
     position: relative;
     top: 15%;
     font-weight: 300;
     border-color: beige;
     border-width: 30px;
-
-    
-    
 }
 
 .sub-header {
+    background-color: #fcf4ad;
     text-decoration: wavy;
     font-style: italic;
     font-size: small;
@@ -26,18 +24,58 @@
     left: 25%;
 }
 
-@media only screen and (max-width: 600px) {
-    #sub-header {
-        display: none;
-    }
-}
 
 header {
     padding: 4%;
-    margin: 2%;
     display: grid;
     grid-template-columns: auto auto;
     left: auto;
     right: auto;
     width: 88%;
+}
+
+.navbar ul{
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    overflow: auto;
+}
+  
+li {
+    float: left;
+}
+  
+li button {
+display: block;
+color: #2F2F0E;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+  
+li button:hover {
+    background-color: #CBCB01;
+}
+
+@media only screen and (max-width: 600px) {
+    #sub-header {
+        display: none;
+    }
+    .navbar ul{
+        display: grid;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .navbar li {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .navbar button{
+        height: 3px;
+    }
+
 }

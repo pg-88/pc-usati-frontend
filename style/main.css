@@ -34,6 +34,22 @@ header {
     width: 88%;
 }
 
+footer {
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    
+}
+
+footer > * {
+    background-color: #60584e;
+    color: blanchedalmond;
+}
+
 .navbar ul{
     display: flex;
     list-style-type: none;
@@ -41,7 +57,7 @@ header {
     overflow: auto;
 }
   
-li {
+.navbar li {
     float: left;
 }
   
@@ -59,9 +75,38 @@ li button:hover {
 }
 
 main {
+
+    padding-top: 7%;
+}
+
+.showcase {
+    padding: 1px;
+    margin-bottom: 5%;
+}
+
+.showcase h3 {
+    text-align: center;
+    height: fit-content;
+}
+
+.grid-container {
     display: grid;
-    grid-template-columns:  auto auto;
-    padding-top: 15%;
+    grid-template-columns: auto auto auto;
+}
+.card-item ul, li {
+    background-color: #d8be4c;
+}
+
+div.card-item {
+    border-style: solid;
+    border-width: 4px;
+    border-color: #53491a;
+    border-radius: 6px;
+    background-color: #d8be4c;    
+}
+
+.card-item img {
+    border-radius: 7%;
 }
 @media only screen and (max-width: 600px) {
     #sub-header {

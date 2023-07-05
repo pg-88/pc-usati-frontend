@@ -19,7 +19,7 @@
 }
 
 #logo {
-    background-color: rgb(252, 244, 173);
+    background-color: #fcf4ad;
     position: relative;
     left: 25%;
 }
@@ -108,6 +108,16 @@ div.card-item {
 .card-item img {
     border-radius: 7%;
 }
+
+div.cart{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/**Media query per gestire il resize e gli schermi piccoli */
 @media only screen and (max-width: 600px) {
     #sub-header {
         display: none;
@@ -128,5 +138,4 @@ div.card-item {
     .navbar button{
         height: 3px;
     }
-
 }

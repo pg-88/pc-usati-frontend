@@ -177,7 +177,43 @@ let card = (article) => {
         card.append(pic);
     }
 
-    card.append(list);
+    card.append(list, cart());
     
     return card;
+}
+
+const cart = (state=null) => {
+    const el = document.createElement('div');
+    el.setAttribute('class', 'cart');
+    el.style.backgroundColor = '#fcf4ad;'
+    el.addEventListener('click', e => addCart(e));
+    if(state === null){
+        console.log('non ci sono acquisti');
+    }
+    const icon = document.createElement('img');
+    icon.src = '../utils/cart.png';
+    icon.width = 20;
+    icon.height = 20;
+
+
+    el.append(icon);
+    return el;
+} 
+
+function addCart(e){
+    /** recupera id prodotto e inserisce il prodotto nel carrello
+     * 
+    */
+    console.log("prodotto",e.target.parentElement.parentElement.id);
+
+}
+
+let Cart = {
+    products: [],
+    
+    addProducts: function (id) {
+        let ins = AVAILABLE_PROD.filter(p => p.id === id)
+        console.log(ins);
+        this.products.push(ins);
+    }
 }

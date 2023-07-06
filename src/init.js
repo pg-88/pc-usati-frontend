@@ -1,4 +1,8 @@
 import { AVAILABLE_PROD } from "./prodotti.js";
+import { Cart } from "./carrello.js"
+
+//inizializzo il carrello come variable globale
+var ShoppingCart = Cart;
 
 
 export function startApp(){
@@ -18,12 +22,14 @@ export function startApp(){
         console.log("elemento",element.type);
         !categorie.includes(element.type) ? categorie.push(element.type) : undefined;
     });
-    
+
+    //elemento carrello
+
     //inserisco elementi nel DOM con le apposite funzioni
-    document.body.append(header(), navbar(categorie), iniMain(), foot());
+    document.body.append(header(),ShoppingCart.getTopElement() , navbar(categorie), iniMain(), foot());
 }
 
-let header = () => {
+const header = () => {
     /**genera header all'avvio dell'app */
     const content = document.createElement('header');
     content.setAttribute('class', 'top-page');
@@ -51,7 +57,7 @@ let header = () => {
     return content;
 }
 
-let foot = () => {
+const foot = () => {
     /**genera il footer */
     let pie = document.createElement('footer');
     let indirizzo = document.createElement('address');
@@ -61,7 +67,7 @@ let foot = () => {
     return pie;
 }
 
-let navbar = (arrCat) => {
+const navbar = (arrCat) => {
     /**passato l'array con i nomi delle categgorie di prodotti genera in navbar
      * costituito da bottoni 
      */
@@ -91,7 +97,7 @@ let navbar = (arrCat) => {
     return element;
 }
 
-let iniMain = () => {
+const iniMain = () => {
 
     //genero il main iniziale di default poi verrà manipolato
     let mainEl = document.createElement('main');
@@ -128,7 +134,7 @@ function clickCat(id){
     showcase(prods);
 }
 
-let showcase = (arrProd) => {
+const showcase = (arrProd) => {
     /**svuota il main e lo ripopola con le card  */
     //Lo svuota main:
     let mainEl = document.querySelector('main');
@@ -155,7 +161,7 @@ let showcase = (arrProd) => {
     mainEl.append(content);
 }
 
-let card = (article) => {
+const card = (article) => {
     /**ritorna una card costruita per l'oggetto passato come parametro*/
     //oggetto di base per le card
     let card = document.createElement('div');
@@ -176,44 +182,6 @@ let card = (article) => {
         pic.setAttribute('class', 'card-img');
         card.append(pic);
     }
-
-    card.append(list, cart());
-    
+    card.append(list, ShoppingCart.getCardElement(article.id));
     return card;
-}
-
-const cart = (state=null) => {
-    const el = document.createElement('div');
-    el.setAttribute('class', 'cart');
-    el.style.backgroundColor = '#fcf4ad;'
-    el.addEventListener('click', e => addCart(e));
-    if(state === null){
-        console.log('non ci sono acquisti');
-    }
-    const icon = document.createElement('img');
-    icon.src = '../utils/cart.png';
-    icon.width = 20;
-    icon.height = 20;
-
-
-    el.append(icon);
-    return el;
-} 
-
-function addCart(e){
-    /** recupera id prodotto e inserisce il prodotto nel carrello
-     * 
-    */
-    console.log("prodotto",e.target.parentElement.parentElement.id);
-
-}
-
-let Cart = {
-    products: [],
-    
-    addProducts: function (id) {
-        let ins = AVAILABLE_PROD.filter(p => p.id === id)
-        console.log(ins);
-        this.products.push(ins);
-    }
 }

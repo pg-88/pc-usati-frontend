@@ -39,6 +39,7 @@ export let Cart = {
 
     _getCartElement: function () {
         //ritorna elemento html con icona carrello
+        //metodo privato serve solo ad altri metodi dell'oggetto
         const el = document.createElement('div');
         el.setAttribute('class', 'cart');
         el.style.backgroundColor = '#fcf4ad;'
@@ -63,8 +64,8 @@ export let Cart = {
         const cart = this._getCartElement();
         cart.id = "top-cart-btn";
         cart.append(stat);
-        cart.addEventListener("click", e => {
-            console.log("Cliccato il carrello, aprire sezione carello", e)
+        cart.addEventListener("click", () => {
+            sidePanel(this._products)
         });
         return cart;
     },
@@ -79,7 +80,20 @@ export let Cart = {
             this.addProducts(id);
             document.getElementById("cart-num-index").innerHTML = 
                 this.getCartItems().toString();
+                console.log("prodotti nel carrello: ",this._products)
         });
         return cart;
     },
+}
+
+
+const sidePanel = (arr) => {
+    const panel = document.createElement('div');
+    panel.id = "cart-side-panel";
+    panel.setAttribute("class", "side-panel");
+    // panel.style.display = 'none';
+    const panelHalf = document.createElement('div');
+    panelHalf.setAttribute("class", "transparent-side-panel");
+    panel.append(panelHalf);
+    document.body.append(panel);
 }

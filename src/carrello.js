@@ -84,16 +84,37 @@ export let Cart = {
         });
         return cart;
     },
+
 }
 
 
 const sidePanel = (arr) => {
+    //elemento che prende tutta la pagina e contiene i due div
     const panel = document.createElement('div');
-    panel.id = "cart-side-panel";
+    // panel.id = "cart-side-panel";
     panel.setAttribute("class", "side-panel");
-    // panel.style.display = 'none';
-    const panelHalf = document.createElement('div');
-    panelHalf.setAttribute("class", "transparent-side-panel");
-    panel.append(panelHalf);
+    const emptyHalf = document.createElement('div');
+    emptyHalf.setAttribute("class", "transparent-side-panel");
+    emptyHalf.addEventListener("click", function () {
+        panel.style.display = 'none';
+    });
+
+    const cartHalf = document.createElement('div');
+    cartHalf.setAttribute("class", "cart-side-panel");
+    const close = document.createElement('a');
+    close.setAttribute("class", "cart-btn");
+    close.innerHTML = `&otimes; Close`;
+    close.addEventListener("click", function () {
+        panel.style.display = 'none';
+    });
+    cartHalf.append(close);
+
+    //genero la lista di prodotti nel carrello   
+    const ul = document.createElement('ul');
+    arr.forEach((i, k) => {
+        console.log("prodotto ", k, i);
+    })
+
+    panel.append(emptyHalf, cartHalf);
     document.body.append(panel);
 }

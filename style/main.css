@@ -93,6 +93,7 @@ main {
     display: grid;
     grid-template-columns: auto auto auto;
 }
+
 .card-item ul, li {
     background-color: #d8be4c;
 }
@@ -116,14 +117,25 @@ div.cart{
     align-items: center;
     justify-content: center;
 }
+
 .transparent-side-panel {
     background-color: #9d87462b;
-    position: relative;
+    position: absolute;
     left: 0%;
     top: 0%;
     width: 50%;
     height: 100%;
 }
+
+.cart-side-panel {
+    background-color: #faebd7;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    width: 50%;
+    height: 100%;
+}
+
 .side-panel {
     display: block;
     width: 100%;
@@ -133,6 +145,11 @@ div.cart{
     top: 0%;
     right: 0%;
 }
+
+.cart-btn:hover {
+    cursor: pointer;
+}
+
 /**Media query per gestire il resize e gli schermi piccoli */
 @media only screen and (max-width: 600px) {
     #sub-header {

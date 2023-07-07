@@ -7,7 +7,7 @@ export let Cart = {
     //array per tenere traccia dei prodotti nel carrello
     //attributo privato dell'oggetto si interagisce tramite i metodi.
     
-    addProducts: function (id) {
+    addProduct: function (id) {
         //funzione per aggiungere un prodotto nell'array, filtrandolo per id
         let ins = AVAILABLE_PROD.filter(p => p.id === id)[0];
         console.log(ins);
@@ -31,7 +31,7 @@ export let Cart = {
         return tot;
     },
 
-    removeItem: function (id) {
+    removeProduct: function (id) {
         //elimina dall'array un prodotto dato il suo id
         const rem = this._products.pop(e => e.id === id);
         console.log("elemento eliminato dal carrello: ",rem);
@@ -65,7 +65,7 @@ export let Cart = {
         cart.id = "top-cart-btn";
         cart.append(stat);
         cart.addEventListener("click", () => {
-            sidePanel(this._products)
+            this._sidePanel(this._products)
         });
         return cart;
     },
@@ -77,7 +77,7 @@ export let Cart = {
         const cart = this._getCartElement();
         cart.id = `add-${id}`
         cart.addEventListener("click", () => {
-            this.addProducts(id);
+            this.addProduct(id);
             document.getElementById("cart-num-index").innerHTML = 
                 this.getCartItems().toString();
                 console.log("prodotti nel carrello: ",this._products)
@@ -85,50 +85,52 @@ export let Cart = {
         return cart;
     },
 
+    _sidePanel: function (arr) {
+        //elemento che prende tutta la pagina e contiene i due div
+        const panel = document.createElement('div');
+        panel.setAttribute("class", "side-panel");
+        const emptyHalf = document.createElement('div');
+        emptyHalf.setAttribute("class", "transparent-side-panel");
+        emptyHalf.addEventListener("click", function () {
+            panel.style.display = 'none';
+        });
+    
+        const cartHalf = document.createElement('div');
+        cartHalf.setAttribute("class", "cart-side-panel");
+        const close = document.createElement('a');
+        close.setAttribute("class", "cart-btn");
+        close.innerHTML = `&otimes; Close`;
+        close.addEventListener("click", function () {
+            panel.style.display = 'none';
+        });
+        cartHalf.append(close);
+    
+        //genero la lista di prodotti nel carrello   
+        const ul = document.createElement('ul');
+        arr.forEach((i) => {
+            console.log("prodotto ", i.model, i.brand);
+            ul.append(this._listProd(i));
+        })
+        cartHalf.append(ul);
+    
+        panel.append(emptyHalf, cartHalf);
+        document.body.append(panel);
+    },
+    
+    _listProd: function (prod) {
+        /** genera gli item da inserire nella lista del carrello*/
+        const el = document.createElement('li');
+    
+        el.append(`${prod.brand} ${prod.model} \t  ➡ `);
+        el.append(`\t ${prod.promo ? (prod.price * (1 - prod.discount / 100)).toFixed(2) : prod.price} €`)
+        const addBtn = document.createElement('button');
+        addBtn.append('+');
+        addBtn.addEventListener('click', this.addProduct(prod.id));
+        const rmBtn = document.createElement('button');
+        rmBtn.append('-');
+        rmBtn.addEventListener('click', this.removeProduct(prod.id));
+        el.append(addBtn, rmBtn);
+        return el;
+    },
 }
 
-
-const sidePanel = (arr) => {
-    //elemento che prende tutta la pagina e contiene i due div
-    const panel = document.createElement('div');
-    panel.setAttribute("class", "side-panel");
-    const emptyHalf = document.createElement('div');
-    emptyHalf.setAttribute("class", "transparent-side-panel");
-    emptyHalf.addEventListener("click", function () {
-        panel.style.display = 'none';
-    });
-
-    const cartHalf = document.createElement('div');
-    cartHalf.setAttribute("class", "cart-side-panel");
-    const close = document.createElement('a');
-    close.setAttribute("class", "cart-btn");
-    close.innerHTML = `&otimes; Close`;
-    close.addEventListener("click", function () {
-        panel.style.display = 'none';
-    });
-    cartHalf.append(close);
-
-    //genero la lista di prodotti nel carrello   
-    const ul = document.createElement('ul');
-    arr.forEach((i, k) => {
-        console.log("prodotto ", k, i);
-        ul.append(listProd(i));
-    })
-    cartHalf.append(ul);
-
-    panel.append(emptyHalf, cartHalf);
-    document.body.append(panel);
-}
-
-const listProd = (prod) => {
-    /** genera gli item da inserire nella lista del carrello*/
-    const el = document.createElement('li');
-
-    el.append(`${prod.brand} ${prod.model} \t  ➡ `);
-    el.append(`\t ${prod.promo ? (prod.price * (1 - prod.discount / 100)).toFixed(2) : prod.price} €`)
-    const addBtn = document.createElement('button');
-    addBtn.setAttribute('onclick', 'hi!+')
-
-    el.append(addBtn);
-    return el;
-}

@@ -76,6 +76,7 @@ const navbar = (arrCat) => {
     element.id = "cat-nav";
     element.setAttribute('class', 'navbar');
     let list = document.createElement('ul');
+    list.setAttribute("class", "navbar")
 
     arrCat.forEach(e => {
         let item = document.createElement('li');

@@ -213,5 +213,20 @@ export const AVAILABLE_PROD =
             buttons: 7,
             powerSupply: '2xAA battery'
         }
-    }
+    },
+    {
+        id: 'tr44322g507',
+        type: 'smartwatch',
+        brand: 'fiducia',
+        model: 'g90',
+        price: 70,
+        promo: true,
+        discount: 5,
+        specs:
+        {
+            dpi: 240,
+            buttons: 7,
+            powerSupply: '2xAA battery'
+        }
+    },
 ]

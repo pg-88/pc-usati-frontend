@@ -91,7 +91,6 @@ export let Cart = {
 const sidePanel = (arr) => {
     //elemento che prende tutta la pagina e contiene i due div
     const panel = document.createElement('div');
-    // panel.id = "cart-side-panel";
     panel.setAttribute("class", "side-panel");
     const emptyHalf = document.createElement('div');
     emptyHalf.setAttribute("class", "transparent-side-panel");
@@ -113,8 +112,23 @@ const sidePanel = (arr) => {
     const ul = document.createElement('ul');
     arr.forEach((i, k) => {
         console.log("prodotto ", k, i);
+        ul.append(listProd(i));
     })
+    cartHalf.append(ul);
 
     panel.append(emptyHalf, cartHalf);
     document.body.append(panel);
+}
+
+const listProd = (prod) => {
+    /** genera gli item da inserire nella lista del carrello*/
+    const el = document.createElement('li');
+
+    el.append(`${prod.brand} ${prod.model} \t  ➡ `);
+    el.append(`\t ${prod.promo ? (prod.price * (1 - prod.discount / 100)).toFixed(2) : prod.price} €`)
+    const addBtn = document.createElement('button');
+    addBtn.setAttribute('onclick', 'hi!+')
+
+    el.append(addBtn);
+    return el;
 }

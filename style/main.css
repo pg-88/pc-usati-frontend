@@ -94,7 +94,7 @@ main {
     grid-template-columns: auto auto auto;
 }
 
-.card-item ul, li {
+.card-item ul, li  {
     background-color: #d8be4c;
 }
 

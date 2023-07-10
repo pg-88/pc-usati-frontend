@@ -14,6 +14,24 @@ export let Cart = {
         this._products.push(ins);
     },
     
+    removeProduct: function (id) {
+        //elimina dall'array un prodotto dato il suo id
+        let i = -1;
+        this._products.forEach((p, index) => {
+            console.log("remove prod", "\nprodotto: ", p, "indice", index)
+            if(p.id === id) i = index;
+        });
+    
+        if(i === -1){
+            console.warn("errore elemento non trovato");
+        }
+        else {
+            this._products = this._products.slice(i, i+1);
+            console.log("Elementi ancora nel carrello: ", this._products);
+            this._sidePanel(this._products);
+        }
+    },
+    
     getCartItems: function () {
         //ritorna il numero di oggetti nel carrello
         console.log(this._products.length);
@@ -25,16 +43,10 @@ export let Cart = {
         let tot = 0;
         this._products.forEach(p => {
             //applico lo sconto se c'è la promozione
-            if(p.promo) tot += (p.price * (1 - p.discount) / 100);
+            if(p.promo) tot += (p.price * (1 - p.discount / 100));
             else tot += p.promo;
         })
         return tot;
-    },
-
-    removeProduct: function (id) {
-        //elimina dall'array un prodotto dato il suo id
-        const rem = this._products.pop(e => e.id === id);
-        console.log("elemento eliminato dal carrello: ",rem);
     },
 
     _getCartElement: function () {
@@ -128,9 +140,11 @@ export let Cart = {
         addBtn.addEventListener('click', this.addProduct(prod.id));
         const rmBtn = document.createElement('button');
         rmBtn.append('-');
-        rmBtn.addEventListener('click', this.removeProduct(prod.id));
+        rmBtn.addEventListener('click',() => {
+            this.removeProduct(prod.id)
+            console.log("rimuovere ", prod.id, "rimangono", this._products)
+        });
         el.append(addBtn, rmBtn);
         return el;
     },
 }
-

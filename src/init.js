@@ -87,7 +87,9 @@ const navbar = (arrCat) => {
         btn.append(
             document.createTextNode(`Categoria ${e.toString().toUpperCase()}`)
         );
-        btn.addEventListener('click', (e) => {clickCat(e.target.id)});
+        btn.addEventListener('click', (e) => {
+            console.log("Oggetto evento clickCat:", e);
+            clickCat(e.target.id)});
         
         //inserimento nella DOM
         item.append(btn);
@@ -158,7 +160,8 @@ const showcase = (arrProd) => {
     })
 
     //inserimento DOM nel main
-    content.append(...cardArr);
+    content.append(...cardArr); //cardArr[0], cardArr[1], cardArr[2]... 
+    console.log(cardArr)
     mainEl.append(content);
 }
 

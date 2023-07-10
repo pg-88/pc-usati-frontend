@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogo</title>
+  <link rel="stylesheet" href="Style/Menu.css">
+  <link rel="stylesheet" href="Style/Pc.css">
+  <link rel="stylesheet" href="Style/carrelli.css">
+  <script src="src/carrelli.js"></script>
+  <script src="src/home.js"></script>
+  <script src="src/Pc_data.js"></script>
+  
+</head>
+
+<header>
+  <div class="header-content">
+    
+    <div class="dropdown">
+      <button class="dropbtn">Menu</button>
+      <div class="dropdown-content">
+        <a href="Index.html">Home</a>
+        <a href="?product=portatili">Portatili</a>
+        <a href="?product=fissi">Fissi</a>
+        <a href="?product=smartphone">Smartphone</a>
+      </div>
+    </div>
+    <button class="dropbtn" onclick="openCart()">Carrello (<span id="badge"></span>) </button>
+    
+    
+  </div>
+  
+  
+</header>
+
+<body onload="init()">
+
+  
+   <h1>Meglio Usato Che Nuovo</h1>
+   <img src="img/Usato-Garantito-Logo.jpg" alt="">
+
+   <div class="container" id="container"></div>
+  
+  
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img src="" alt="Dettaglio Oggetto" id="detailImage">
+        <h2>Nome: <span id="detailName"></span></h2>
+        <p>Grado: <span id="detailGrade"></span></p>
+        <p>Prezzo: <span id="detailPrice"></span></p>
+        <div id="sezioneDettagli"></div>
+      </div>
+    </div>  
+
+   
+  
+   <div id="cart-modal" class="modal">
+    </div>
+</body> 
+</html>

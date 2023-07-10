@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogo</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="Pc_data.js"></script>
+  <script src="index.js"></script>
+  <script src="carrelli.js"></script>
+</head>
+
+<header>
+  <button id="myButt" onclick="openCart()">
+    <span id="badge" class="badge"></span>
+    <img src="img/icons8-cart-48.png" >
+  </button>
+</header>
+
+<body onload="updateBadge()">
+  <h1>Meglio Usato Che Nuovo</h1>
+  <img src="img/Usato-Garantito-Logo.jpg" alt="">
+
+    
+  
+
+  <div class="container"></div>
+
+  <div class="container">
+    <div class="card">
+      <img src="img/Asus.jpg" alt="Asus" onclick="openModal(0)">
+      <h2>Asus</h2>
+      <p>Grado: B</p>
+      <p>Prezzo: €350.00</p>
+      <button class="add-button" onclick="add(0)">
+        <img src="img/icons8-cart-48.png">
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="img/Dell.jpg" alt="Dell" onclick="openModal(1)">
+      <h2>Dell</h2>
+      <p>Grado: B</p>
+      <p>Prezzo: €249.00</p>
+      <button class="add-button" onclick="add(1)">
+        <img src="img/icons8-cart-48.png">
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="img/Hp.jpg" alt="Hp" onclick="openModal(2)">
+      <h2>Hp</h2>
+      <p>Grado: C</p>
+      <p>Prezzo: €239.00</p>
+      <button class="add-button" onclick="add(2)">
+        <img src="img/icons8-cart-48.png">
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="img/offer.png" alt="Offerta" onclick="openModal(3)">
+      <img src="img/Lenovo.jpg" alt="Lenovo" onclick="openModal(3)">
+      <h2>Lenovo</h2>
+      <p>Grado: A</p>
+      <p>Prezzo: <del>€600.00</del></p>
+      <p><ins>200€</ins></p>
+      <button class="add-button" onclick="add(3)">
+        <img src="img/icons8-cart-48.png">
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="img/Mac.jpg" alt="Mac" onclick="openModal(4)">
+      <h2>Mac</h2>
+      <p>Grado: A</p>
+      <p>Prezzo: €500.00</p>
+      <button class="add-button" onclick="add(4)">
+        <img src="img/icons8-cart-48.png">
+      </button>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img src="" alt="Dettaglio Oggetto" id="detailImage">
+        <h2>Nome: <span id="detailName"></span></h2>
+        <p>Grado: <span id="detailGrade"></span></p>
+        <p>Prezzo: <span id="detailPrice"></span></p>
+        <div id="sezioneDettagli"></div>
+      </div>
+    </div>
+
+    <div id="cart-modal" class="modal">
+    </div>
+  </div>
+</body>
+</html>

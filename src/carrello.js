@@ -82,7 +82,9 @@ export let Cart = {
         cart.append(stat);
         cart.addEventListener("click", () => {
             console.log("Prodotti nell'array carrello:", this._products);
-            document.body.append(this.cartContainer());
+            document.body.classList.add(".sideshow")
+            // document.body.append(this.cartContainer());
+
         });
         return cart;
     },
@@ -118,7 +120,7 @@ export let Cart = {
             item.classList.add("list-item");
             item.append(document.createTextNode(
                 `prodotto: ${el.id} ↦ ${el.promo ? 
-                    (el.price * (1 - el.discount / 100).toFixed(2)) : 
+                    (el.price * (1 - el.discount / 100)).toFixed(2) : 
                     el.price.toFixed(2)}\nMarca: ${el.brand},Prodotto: ${el.model}`));
             console.log("elemento creato nel map",item);
             return item;
@@ -134,4 +136,6 @@ export let Cart = {
         }
         this.cartContainer();
     },
+
+
 }

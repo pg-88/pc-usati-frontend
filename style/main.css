@@ -2,6 +2,11 @@
     margin: 2%;
     background-color: antiquewhite;
 }
+
+.sideshow {
+    transform: translateX(-15%);
+    transition-duration: 1s;
+}
 .top-page {
     background-color: #fcf4ad;
     position: relative;
@@ -136,18 +141,9 @@ div.cart{
     height: 100%;
 }
 
-.side-panel {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    position: fixed;
-    top: 0%;
-    right: 0%;
-}
-
 .cart-btn:hover {
     cursor: pointer;
+
 }
 
 /**Media query per gestire il resize e gli schermi piccoli */

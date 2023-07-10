@@ -12,6 +12,7 @@ export let Cart = {
         let ins = AVAILABLE_PROD.filter(p => p.id === id)[0];
         console.log(ins);
         this._products.push(ins);
+        this.updateCart();
     },
     
     removeProduct: function (id) {
@@ -26,10 +27,11 @@ export let Cart = {
             console.warn("errore elemento non trovato");
         }
         else {
-            this._products = this._products.slice(i, i+1);
+            console.log("indice", i, "prodotto:", this._products[i]);
+            this._products = this._products.splice(i, 1);
             console.log("Elementi ancora nel carrello: ", this._products);
-            this._sidePanel(this._products);
         }
+        this.updateCart();
     },
     
     getCartItems: function () {
@@ -49,6 +51,8 @@ export let Cart = {
         return tot;
     },
 
+
+    //----------------------------Elementi HTML-----------------------------------------
     _getCartElement: function () {
         //ritorna elemento html con icona carrello
         //metodo privato serve solo ad altri metodi dell'oggetto
@@ -77,7 +81,8 @@ export let Cart = {
         cart.id = "top-cart-btn";
         cart.append(stat);
         cart.addEventListener("click", () => {
-            this._sidePanel(this._products)
+            console.log("Prodotti nell'array carrello:", this._products);
+            document.body.append(this.cartContainer());
         });
         return cart;
     },
@@ -90,61 +95,43 @@ export let Cart = {
         cart.id = `add-${id}`
         cart.addEventListener("click", () => {
             this.addProduct(id);
+            console.log("Array dopo insert:", this._products);
             document.getElementById("cart-num-index").innerHTML = 
                 this.getCartItems().toString();
-                console.log("prodotti nel carrello: ",this._products)
+                console.log("prodotti nel carrello: ",this._products);
         });
         return cart;
     },
 
-    _sidePanel: function (arr) {
-        //elemento che prende tutta la pagina e contiene i due div
-        const panel = document.createElement('div');
-        panel.setAttribute("class", "side-panel");
-        const emptyHalf = document.createElement('div');
-        emptyHalf.setAttribute("class", "transparent-side-panel");
-        emptyHalf.addEventListener("click", function () {
-            panel.style.display = 'none';
+    cartContainer: function () {
+        //elemento principale
+        const contEL = document.createElement('div');
+        contEL.classList.add("cart-container");
+
+        //elemento per contenere la lista
+        const cartEl = document.createElement("ul");
+        cartEl.classList.add("cart-list", "cart");
+
+        //creo array di elementi prodotto
+        let liProd = this._products.map(el => {
+            let item = document.createElement('li');
+            item.classList.add("list-item");
+            item.append(document.createTextNode(
+                `prodotto: ${el.id} ↦ ${el.promo ? 
+                    (el.price * (1 - el.discount / 100).toFixed(2)) : 
+                    el.price.toFixed(2)}\nMarca: ${el.brand},Prodotto: ${el.model}`));
+            console.log("elemento creato nel map",item);
+            return item;
         });
-    
-        const cartHalf = document.createElement('div');
-        cartHalf.setAttribute("class", "cart-side-panel");
-        const close = document.createElement('a');
-        close.setAttribute("class", "cart-btn");
-        close.innerHTML = `&otimes; Close`;
-        close.addEventListener("click", function () {
-            panel.style.display = 'none';
-        });
-        cartHalf.append(close);
-    
-        //genero la lista di prodotti nel carrello   
-        const ul = document.createElement('ul');
-        arr.forEach((i) => {
-            console.log("prodotto ", i.model, i.brand);
-            ul.append(this._listProd(i));
-        })
-        cartHalf.append(ul);
-    
-        panel.append(emptyHalf, cartHalf);
-        document.body.append(panel);
+        cartEl.append(...liProd);
+        contEL.append(cartEl);
+        return contEL;
     },
-    
-    _listProd: function (prod) {
-        /** genera gli item da inserire nella lista del carrello*/
-        const el = document.createElement('li');
-    
-        el.append(`${prod.brand} ${prod.model} \t  ➡ `);
-        el.append(`\t ${prod.promo ? (prod.price * (1 - prod.discount / 100)).toFixed(2) : prod.price} €`)
-        const addBtn = document.createElement('button');
-        addBtn.append('+');
-        addBtn.addEventListener('click', this.addProduct(prod.id));
-        const rmBtn = document.createElement('button');
-        rmBtn.append('-');
-        rmBtn.addEventListener('click',() => {
-            this.removeProduct(prod.id)
-            console.log("rimuovere ", prod.id, "rimangono", this._products)
-        });
-        el.append(addBtn, rmBtn);
-        return el;
+
+    updateCart: function() {
+        if(document.querySelector(".cart-container") !== null){
+            document.querySelector(".cart-container").innerHTML = '';
+        }
+        this.cartContainer();
     },
 }

@@ -19,7 +19,6 @@ export function startApp(){
     let categorie = []
     console.log("app avviata");
     AVAILABLE_PROD.forEach(element => {
-        console.log("elemento",element.type);
         !categorie.includes(element.type) ? categorie.push(element.type) : undefined;
     });
 
@@ -88,7 +87,6 @@ const navbar = (arrCat) => {
             document.createTextNode(`Categoria ${e.toString().toUpperCase()}`)
         );
         btn.addEventListener('click', (e) => {
-            console.log("Oggetto evento clickCat:", e);
             clickCat(e.target.id)});
         
         //inserimento nella DOM
@@ -133,7 +131,6 @@ function clickCat(id){
     console.log("Selezionato la categoria", id);
     let prods = AVAILABLE_PROD.filter((en) => en.type === id);
     console.log("prodotti trovati ", prods);
-
     showcase(prods);
 }
 
@@ -161,7 +158,6 @@ const showcase = (arrProd) => {
 
     //inserimento DOM nel main
     content.append(...cardArr); //cardArr[0], cardArr[1], cardArr[2]... 
-    console.log(cardArr)
     mainEl.append(content);
 }
 

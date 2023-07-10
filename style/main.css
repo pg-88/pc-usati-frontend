@@ -91,7 +91,7 @@ main {
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .card-item ul, li  {
@@ -170,5 +170,10 @@ div.cart{
 
     .navbar button{
         height: 3px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr, auto);
     }
 }

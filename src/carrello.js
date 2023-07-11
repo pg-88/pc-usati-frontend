@@ -113,17 +113,14 @@ export let Cart = {
         cartEl.classList.add("cart-list", "cart");
 
         //creo array di elementi prodotto
-        let liProd = this._products.map(el => 
-            //da gestire in una fz a parte
-            {
-            let item = document.createElement('li');
-            item.classList.add("cart-item");
-            item.append(document.createTextNode(
-                `prodotto: ${el.id} ↦ ${el.promo ? 
-                    (el.price * (1 - el.discount / 100)).toFixed(2) : 
-                    el.price.toFixed(2)}\nMarca: ${el.brand},Prodotto: ${el.model}`));
-            console.log("elemento creato nel map",item);
-            return item;
+        let liProd = this._products.map(el => {
+            console.log(this._products.filter(p => p.id === el.id).length);
+            let itemCart = this.prodToCart(
+                el,
+                //numero di prodotti uguali calcolati con filter su _products
+                this._products.filter(p => p.id === el.id).length
+            );
+            return itemCart;
         });
         //elemento div cliccabile e trasparente per uscire dal carrello
         const transparent = document.createElement('div');
@@ -132,6 +129,29 @@ export let Cart = {
         cartEl.append(...liProd);
         contEL.append(transparent, cartEl);
         return contEL;
+    },
+
+    prodToCart: function (prod, qty) {
+        let item = document.createElement('li');
+        item.classList.add("cart-item");
+        const prodId = document.createElement('span');
+        prodId.classList.add("cart-id");
+        prodId.append(`${prod.id}`);
+
+        const quantity = document.createElement('span');
+        quantity.classList.add("cart-qty");
+        quantity.append(qty.toString());
+
+        const price = document.createElement('span');
+        price.classList.add("cart-price");
+
+        prod.promo ? 
+        price.append(`${(prod.price * (1 - prod.discount / 100)).toFixed(2)}`) : 
+        price.append(`${prod.price.toFixed(2)}`);
+
+        //dom injection
+        item.append(prodId, quantity, price);
+        return item;
     },
 
     updateCart: function() {
@@ -148,6 +168,5 @@ export let Cart = {
         element.classList.toggle("hidden-cart");
         empty.classList.toggle("hidden-cart")
     },
-
 
 }

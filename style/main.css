@@ -137,7 +137,7 @@ div.cart{
 .card-item img {
     border-radius: 7%;
 }
-/**Carrello */
+/**##########################Carrello####################################### */
 
 ul.cart-list {
     width: 100%;
@@ -150,7 +150,7 @@ ul.cart-list {
     padding-bottom: 3%;
     border-width: 2px;
     border-style: ridge;
-    display: grid;
+    /* display: grid; */
     grid-template-columns: repeat(3, 1fr);
 }
 
@@ -159,7 +159,7 @@ ul.cart-list {
     position: fixed;
     top: 0%;
     right: 0%;
-    width: 33%;
+    width: fit-content;
     height: 100%;
     transition: 5s;
     margin-right: 0%;
@@ -188,6 +188,22 @@ ul.cart-list {
     margin-left: 0%;
 }
 
+.cart.header > th {
+    background-color: aqua;
+    text-align: center;
+    text-justify: newspaper;
+    text-transform: lowercase;
+    font-weight:900;
+}
+
+.cart-total {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    background-color: greenyellow;
+    color: #2F2F0E;
+}
+/**################################fine Carrello#####################*/
 
 /**Media query per gestire il resize e gli schermi piccoli */
 @media only screen and (max-width: 600px) {

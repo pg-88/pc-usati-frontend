@@ -44,7 +44,7 @@ export let Cart = {
         this._products.forEach(p => {
             //applico lo sconto se c'è la promozione
             if(p.promo) tot += (p.price * (1 - p.discount / 100));
-            else tot += p.promo;
+            else tot += p.price;
         })
         return tot.toFixed(2);
     },
@@ -110,9 +110,22 @@ export let Cart = {
         transparent.classList.add("transparent", "cart-empty-side", "hidden-cart");
         transparent.addEventListener("click", () => this.showHideCart());
 
-        //elemento per contenere la lista
-        const cartEl = document.createElement("ul");
+        //genero tabella e header
+        const cartEl = document.createElement("table");
         cartEl.classList.add("cart-list", "cart");
+        const header = document.createElement('tr');
+        header.classList.add("cart-header", "cart");
+        const idH = document.createElement('th');
+        idH.append("ID Prodotto");
+        header.append(idH);
+        const qH = document.createElement('th');
+        qH.append("Quantità");
+        header.append(qH);
+        const priceH = document.createElement('th');
+        priceH.append("Prezzo Unitario");
+        header.append(priceH);
+        cartEl.append(header);
+
 
         //set di prodotti ovvero l'array con elementi inseriti una sola volta
         let setProd = [];
@@ -136,23 +149,23 @@ export let Cart = {
     },
 
     prodToCart: function (prod, qty) {
-        //elemento item
-        let item = document.createElement('li');
+        //elemento riga
+        let item = document.createElement('tr');
         item.classList.add("cart-item");
         
         //identificativo
-        const prodId = document.createElement('span');
+        const prodId = document.createElement('td');
         prodId.classList.add("cart-id");
         prodId.id = `cart-prod-${prod.id}`;
         prodId.append(`${prod.id}`);
 
         //quantità
-        const quantity = document.createElement('span');
+        const quantity = document.createElement('td');
         quantity.classList.add("cart-qty");
         quantity.append(qty.toString());
 
         //prezzo
-        const price = document.createElement('span');
+        const price = document.createElement('td');
         price.classList.add("cart-price");
         //gestione sconto
         prod.promo ? 

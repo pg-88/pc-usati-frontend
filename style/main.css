@@ -34,6 +34,24 @@ header {
     right: auto;
 }
 
+
+#top-cart-btn > img {
+    background-color: darkorange;
+}
+#top-cart-btn > div {
+    background-color: darkorange;
+}
+
+#top-cart-btn {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    width: 6%;
+    height: 6%;
+    border-radius: 65%;
+    background-color: darkorange;
+}
+
 footer {
     width: 100%;
     margin-left: 0px;
@@ -147,6 +165,20 @@ ul.cart-list {
 .hidden-cart {
     display: none;
 }
+
+.transparent {
+    background-color: transparent;
+}
+
+.cart-empty-side {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 67%;
+    height: 100%;
+    margin-left: 0%;
+}
+
 
 /**Media query per gestire il resize e gli schermi piccoli */
 @media only screen and (max-width: 600px) {

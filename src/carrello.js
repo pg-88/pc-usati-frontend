@@ -58,7 +58,6 @@ export let Cart = {
         //metodo privato serve solo ad altri metodi dell'oggetto
         const el = document.createElement('div');
         el.setAttribute('class', 'cart');
-        el.style.backgroundColor = '#fcf4ad;'
         const icon = document.createElement('img');
         icon.src = '../utils/cart.png';
         icon.width = 20;
@@ -82,7 +81,6 @@ export let Cart = {
         cart.append(stat);
         cart.addEventListener("click", () => {
             if(this._products.length !== 0){
-                console.log("Prodotti nell'array carrello:", this._products);
                 this.showHideCart()
             }
         });
@@ -115,7 +113,9 @@ export let Cart = {
         cartEl.classList.add("cart-list", "cart");
 
         //creo array di elementi prodotto
-        let liProd = this._products.map(el => {
+        let liProd = this._products.map(el => 
+            //da gestire in una fz a parte
+            {
             let item = document.createElement('li');
             item.classList.add("cart-item");
             item.append(document.createTextNode(
@@ -125,8 +125,12 @@ export let Cart = {
             console.log("elemento creato nel map",item);
             return item;
         });
+        //elemento div cliccabile e trasparente per uscire dal carrello
+        const transparent = document.createElement('div');
+        transparent.classList.add("transparent", "cart-empty-side", "hidden-cart");
+        transparent.addEventListener("click", () => this.showHideCart());
         cartEl.append(...liProd);
-        contEL.append(cartEl);
+        contEL.append(transparent, cartEl);
         return contEL;
     },
 
@@ -140,7 +144,9 @@ export let Cart = {
 
     showHideCart: function () {
         const element = document.querySelector(".cart-container");
+        const empty = document.querySelector(".cart-empty-side");
         element.classList.toggle("hidden-cart");
+        empty.classList.toggle("hidden-cart")
     },
 
 

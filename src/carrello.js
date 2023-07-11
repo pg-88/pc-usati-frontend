@@ -126,9 +126,12 @@ export let Cart = {
             return this.prodToCart(el, q);
         });
 
+        let tot = document.createElement('span');
+        tot.classList.add("cart-total");
+        tot.append(`Totale: ${this.getTotalCart()}`);
 
         cartEl.append(...liProd);
-        contEL.append(transparent, cartEl);
+        contEL.append(transparent, cartEl, tot);
         return contEL;
     },
 

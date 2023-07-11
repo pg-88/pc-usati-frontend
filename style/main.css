@@ -1,12 +1,8 @@
 * {
-    margin: 2%;
+    margin: 0%;
     background-color: antiquewhite;
 }
 
-.sideshow {
-    transform: translateX(-15%);
-    transition-duration: 1s;
-}
 .top-page {
     background-color: #fcf4ad;
     position: relative;
@@ -36,7 +32,6 @@ header {
     grid-template-columns: auto auto;
     left: auto;
     right: auto;
-    width: 88%;
 }
 
 footer {
@@ -55,11 +50,12 @@ footer > * {
     color: blanchedalmond;
 }
 
-.navbar ul{
+ul.navbar {
     display: flex;
     list-style-type: none;
-    padding: 0;
+    padding: 0%;
     overflow: auto;
+    justify-content: space-evenly;
 }
   
 .navbar li {
@@ -111,10 +107,6 @@ div.card-item {
     background-color: #d8be4c;    
 }
 
-.card-item img {
-    border-radius: 7%;
-}
-
 div.cart{
     width: 30px;
     height: 30px;
@@ -123,27 +115,37 @@ div.cart{
     justify-content: center;
 }
 
-.transparent-side-panel {
-    background-color: #9d87462b;
-    position: absolute;
-    left: 0%;
-    top: 0%;
-    width: 50%;
-    height: 100%;
+
+.card-item img {
+    border-radius: 7%;
+}
+/**Carrello */
+
+ul.cart-list {
+    width: 100%;
+    list-style: none;
+    padding-left: 0%;
+    background-color: #fcf4ad;
 }
 
-.cart-side-panel {
-    background-color: #faebd7;
-    position: absolute;
+.cart-item {
+    padding-bottom: 3%;
+
+}
+
+.cart-container {
+    background-color: beige;
+    position: fixed;
+    top: 0%;
     right: 0%;
-    top: 0%;
-    width: 50%;
+    width: 33%;
     height: 100%;
+    transition: 5s;
+    margin-right: 0%;
 }
 
-.cart-btn:hover {
-    cursor: pointer;
-
+.hidden-cart {
+    display: none;
 }
 
 /**Media query per gestire il resize e gli schermi piccoli */

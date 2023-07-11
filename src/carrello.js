@@ -81,10 +81,10 @@ export let Cart = {
         cart.id = "top-cart-btn";
         cart.append(stat);
         cart.addEventListener("click", () => {
-            console.log("Prodotti nell'array carrello:", this._products);
-            document.body.classList.add(".sideshow")
-            // document.body.append(this.cartContainer());
-
+            if(this._products.length !== 0){
+                console.log("Prodotti nell'array carrello:", this._products);
+                this.showHideCart()
+            }
         });
         return cart;
     },
@@ -100,7 +100,7 @@ export let Cart = {
             console.log("Array dopo insert:", this._products);
             document.getElementById("cart-num-index").innerHTML = 
                 this.getCartItems().toString();
-                console.log("prodotti nel carrello: ",this._products);
+                this.updateCart()
         });
         return cart;
     },
@@ -108,7 +108,7 @@ export let Cart = {
     cartContainer: function () {
         //elemento principale
         const contEL = document.createElement('div');
-        contEL.classList.add("cart-container");
+        contEL.classList.add("cart-container", "hidden-cart");
 
         //elemento per contenere la lista
         const cartEl = document.createElement("ul");
@@ -117,7 +117,7 @@ export let Cart = {
         //creo array di elementi prodotto
         let liProd = this._products.map(el => {
             let item = document.createElement('li');
-            item.classList.add("list-item");
+            item.classList.add("cart-item");
             item.append(document.createTextNode(
                 `prodotto: ${el.id} ↦ ${el.promo ? 
                     (el.price * (1 - el.discount / 100)).toFixed(2) : 
@@ -131,10 +131,16 @@ export let Cart = {
     },
 
     updateCart: function() {
-        if(document.querySelector(".cart-container") !== null){
-            document.querySelector(".cart-container").innerHTML = '';
+        const element = document.querySelector(".cart-container");
+        if(element !== null){
+            document.body.removeChild(element);
         }
-        this.cartContainer();
+        document.body.append(this.cartContainer());
+    },
+
+    showHideCart: function () {
+        const element = document.querySelector(".cart-container");
+        element.classList.toggle("hidden-cart");
     },
 
 

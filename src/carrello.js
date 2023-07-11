@@ -72,7 +72,7 @@ export let Cart = {
         stat.setAttribute("class", "status cart");
         stat.width = 7;
         stat.height = 7;
-        stat.append(this.getTotalCart().toString());
+        stat.append(this.getCartItems().toString());
 
         const cart = this._getCartElement();
         cart.id = "top-cart-btn";

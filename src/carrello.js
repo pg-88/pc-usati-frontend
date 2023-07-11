@@ -10,7 +10,6 @@ export let Cart = {
     addProduct: function (id) {
         //funzione per aggiungere un prodotto nell'array, filtrandolo per id
         let ins = AVAILABLE_PROD.filter(p => p.id === id)[0];
-        console.log(ins);
         this._products.push(ins);
         this.updateCart();
     },
@@ -36,7 +35,6 @@ export let Cart = {
     
     getCartItems: function () {
         //ritorna il numero di oggetti nel carrello
-        console.log(this._products.length);
         return this._products.length;
     },
 
@@ -48,7 +46,7 @@ export let Cart = {
             if(p.promo) tot += (p.price * (1 - p.discount / 100));
             else tot += p.promo;
         })
-        return tot;
+        return tot.toFixed(2);
     },
 
 
@@ -95,7 +93,6 @@ export let Cart = {
         cart.id = `add-${id}`
         cart.addEventListener("click", () => {
             this.addProduct(id);
-            console.log("Array dopo insert:", this._products);
             document.getElementById("cart-num-index").innerHTML = 
                 this.getCartItems().toString();
                 this.updateCart()
@@ -108,43 +105,53 @@ export let Cart = {
         const contEL = document.createElement('div');
         contEL.classList.add("cart-container", "hidden-cart");
 
-        //elemento per contenere la lista
-        const cartEl = document.createElement("ul");
-        cartEl.classList.add("cart-list", "cart");
-
-        //creo array di elementi prodotto
-        let liProd = this._products.map(el => {
-            console.log(this._products.filter(p => p.id === el.id).length);
-            let itemCart = this.prodToCart(
-                el,
-                //numero di prodotti uguali calcolati con filter su _products
-                this._products.filter(p => p.id === el.id).length
-            );
-            return itemCart;
-        });
         //elemento div cliccabile e trasparente per uscire dal carrello
         const transparent = document.createElement('div');
         transparent.classList.add("transparent", "cart-empty-side", "hidden-cart");
         transparent.addEventListener("click", () => this.showHideCart());
+
+        //elemento per contenere la lista
+        const cartEl = document.createElement("ul");
+        cartEl.classList.add("cart-list", "cart");
+
+        //set di prodotti ovvero l'array con elementi inseriti una sola volta
+        let setProd = [];
+        this._products.forEach(prod => {
+            setProd.includes(prod) ? undefined : setProd.push(prod);
+        });
+        //creo array di elementi prodotto partendo dal set
+        const liProd = setProd.map(el => {
+            //controllo la quantità dello stesso prodotto inserito nel carrello
+            const q = this._products.filter(i => i.id === el.id).length;
+            return this.prodToCart(el, q);
+        });
+
+
         cartEl.append(...liProd);
         contEL.append(transparent, cartEl);
         return contEL;
     },
 
     prodToCart: function (prod, qty) {
+        //elemento item
         let item = document.createElement('li');
         item.classList.add("cart-item");
+        
+        //identificativo
         const prodId = document.createElement('span');
         prodId.classList.add("cart-id");
+        prodId.id = `cart-prod-${prod.id}`;
         prodId.append(`${prod.id}`);
 
+        //quantità
         const quantity = document.createElement('span');
         quantity.classList.add("cart-qty");
         quantity.append(qty.toString());
 
+        //prezzo
         const price = document.createElement('span');
         price.classList.add("cart-price");
-
+        //gestione sconto
         prod.promo ? 
         price.append(`${(prod.price * (1 - prod.discount / 100)).toFixed(2)}`) : 
         price.append(`${prod.price.toFixed(2)}`);
@@ -152,6 +159,7 @@ export let Cart = {
         //dom injection
         item.append(prodId, quantity, price);
         return item;
+
     },
 
     updateCart: function() {
@@ -166,7 +174,7 @@ export let Cart = {
         const element = document.querySelector(".cart-container");
         const empty = document.querySelector(".cart-empty-side");
         element.classList.toggle("hidden-cart");
-        empty.classList.toggle("hidden-cart")
+        empty.classList.toggle("hidden-cart");
     },
 
 }

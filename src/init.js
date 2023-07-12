@@ -267,6 +267,7 @@ const popUp = (id) => {
     container.append(close, img, specsTab);
     const banner = promoBanner();
     banner.classList.add("popup-banner");
+    banner.id = "promo-banner-popup";
     
     if(detail.discount) {
         container.append(`Sconto: ${detail.discount}%\n`, banner);

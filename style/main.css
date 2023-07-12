@@ -97,7 +97,7 @@ main {
 
     padding-top: 7%;
 }
-
+/**############################## CARD PRODOTTI #############################*/
 .showcase {
     padding: 1px;
     margin-bottom: 5%;
@@ -122,7 +122,8 @@ div.card-item {
     border-width: 4px;
     border-color: #53491a;
     border-radius: 6px;
-    background-color: #d8be4c;    
+    background-color: #d8be4c;
+    align-content: baseline;
 }
 
 div.cart{
@@ -131,12 +132,19 @@ div.cart{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fcf4ad;
 }
 
-
-.card-item img {
-    border-radius: 7%;
+#banner-promo{
+    width: 30%;
+    position: static;
+    top: 2%;
+    right: 1%;
+    display: flex;
+    background-color: #d8be4c;
 }
+/**##########################FINE CARD PRODOTTI #############################*/
+
 /**##########################Carrello####################################### */
 
 ul.cart-list {
@@ -151,7 +159,7 @@ ul.cart-list {
     border-width: 2px;
     border-style: ridge;
     /* display: grid; */
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 1fr); */
 }
 
 .cart-container {
@@ -188,13 +196,13 @@ ul.cart-list {
     margin-left: 0%;
 }
 
-.cart.header > th {
+/* .cart.header > th {
     background-color: aqua;
     text-align: center;
     text-justify: newspaper;
     text-transform: lowercase;
     font-weight:900;
-}
+} */
 
 .cart-total {
     position: absolute;
@@ -203,8 +211,63 @@ ul.cart-list {
     background-color: greenyellow;
     color: #2F2F0E;
 }
-/**################################fine Carrello#####################*/
+/**################################fine Carrello#############################*/
 
+/**############################----POPUP----#################################*/
+
+div.popup *{
+    background-color: #60584e;
+}
+
+
+.popup {
+    display: initial;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    background-color: #60584e;
+}
+
+.hidden-popup {
+    display: none;
+}
+
+#close-btn {
+    z-index: 1;
+    position: absolute;
+    border-radius: 5%;
+    background-color: greenyellow;
+    width: fit-content;
+    font-size: medium;
+}
+
+#close-btn:hover {
+    cursor: pointer;
+}
+
+#popup-img {
+    width: 50%;
+    position: relative;
+    top: 5%;
+    left: 0%;
+}
+
+.popup-table {
+    position: relative;
+    left: 50%;
+    bottom: 45%;
+}
+
+.popup-banner {
+    display: none;
+    width: 30%;
+    position: relative;
+    bottom: 36%;
+    left: 44%;
+}
+/**############################--POPUP FINE--################################*/
 /**Media query per gestire il resize e gli schermi piccoli */
 @media only screen and (max-width: 600px) {
     #sub-header {

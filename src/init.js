@@ -165,6 +165,11 @@ const card = (article) => {
     /**ritorna una card costruita per l'oggetto passato come parametro*/
     //oggetto di base per le card
     let card = document.createElement('div');
+    card.addEventListener("click", (e) => {
+        let id = getId(e.target);
+        console.log("Trovato id:", id);
+        document.body.append(popUp(id));
+    })
     card.setAttribute('class', 'card-item');
     card.setAttribute('id', `${article.id}`);
     //lista caratteristiche
@@ -183,5 +188,98 @@ const card = (article) => {
         card.append(pic);
     }
     card.append(list, ShoppingCart.getCardElement(article.id));
+    if(article.promo) card.insertAdjacentElement('afterbegin', promoBanner());
     return card;
+}
+
+const promoBanner = () => {
+    const banner = document.createElement('img');
+    banner.src = "../utils/promo.png";
+    banner.id = "banner-promo"
+    return banner;
+}
+
+const popUp = (id) => {
+    const detail = AVAILABLE_PROD.find(p => p.id === id);
+    console.log(detail.specs);
+    let container = document.createElement('div');
+    container.focus();
+    container.classList.add("popup");
+    //chiudere popup
+    let close = document.createElement('span');
+    close.id = "close-btn";
+    close.append("⊗ Chiudi");
+    close.addEventListener("click", () => document.body.removeChild(container));
+    //immagine prodotto
+    const img = document.createElement('img');
+    img.id = "popup-img";
+    img.src = detail.img !== undefined ? detail.img : "../utils/logo.png";
+
+
+    let specsTab = document.createElement('table');
+    specsTab.classList.add("popup-table");
+    const info = document.createElement('tr');
+    //intestazione dettagli
+    const infoH = document.createElement('th');
+    infoH.append("Dettagli Prodotto")
+    infoH.colSpan = 2;
+    info.append(infoH);
+    //dettagli
+    const row1 = document.createElement('tr');
+    const row2 = document.createElement('tr');
+    [
+        `Marca: ${detail.brand}\n`,
+        `Modello: ${detail.model}\n`,
+        `Prezzo: ${detail.price}\n`,
+        `ID prodotto: ${detail.id}\n`
+    ].forEach((el, cell) => {
+        const det = document.createElement('td');
+        det.append(el);
+        if(cell < 2) row1.append(det);
+        else row2.append(det);
+    });
+
+    //Specifiche Tecniche
+    const spec = document.createElement('tr');
+    //intestazione specifiche
+    const specH = document.createElement('th');
+    specH.append("Specifiche Tecniche");
+    specH.colSpan = 2;
+    spec.append(specH);
+    
+    //inserisco i pezzi di tabella nella DOM
+    specsTab.append(infoH, row1, row2, specH, spec)
+
+    //Righe specifiche tecniche
+    Object.entries(detail.specs).forEach((v) => {
+        console.log("Oggetto specs: ", v);
+        const specR = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.colSpan = 2; 
+        cell.append(`${v[0].toLocaleUpperCase()} → ${v[1]}\n`);
+        specR.append(cell);
+        console.log("riga spec ", specR);
+        specsTab.append(specR);
+    });
+    
+    
+    //Manipolazione DOM
+    container.append(close, img, specsTab);
+    const banner = promoBanner();
+    banner.classList.add("popup-banner");
+    
+    if(detail.discount) {
+        container.append(`Sconto: ${detail.discount}%\n`, banner);
+    }
+    return container;
+}
+
+function getId(element){
+    //risale l'albero della DOM delle card per trovare l'id del div container
+    if(element.tagName === 'DIV'){
+        let id = element.id;
+        return id;
+    } else {
+        return getId(element.parentElement);
+    }
 }

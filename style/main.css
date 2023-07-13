@@ -214,7 +214,15 @@ ul.cart-list {
 /**################################fine Carrello#############################*/
 
 /**############################----POPUP----#################################*/
-
+#popup-transparent {
+    position: absolute;
+    top: 0%;
+    margin: 0%;
+    padding: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #42424277;
+}
 div.popup *{
     background-color: #60584e;
 }
@@ -248,24 +256,44 @@ div.popup *{
 }
 
 #popup-img {
-    width: 50%;
+    width: 400px;
+    height: 350px;
     position: relative;
     top: 5%;
-    left: 0%;
+    left: auto;
+    right: auto;
 }
 
 .popup-table {
+    display: contents;
     position: relative;
     left: 50%;
     bottom: 45%;
 }
 
 .popup-banner {
-
     width: 30%;
     position: relative;
     bottom: 36%;
     left: 44%;
+}
+
+p.discount-text {
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
+    writing-mode: sideways-rl;
+    text-orientation: upright;
+    display: block;
+    rotate: -45deg;
+    position: relative;
+    bottom: 70%;
+    left: 20%;
+    background: transparent;
+    font-variant: all-small-caps;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "monospace";
+    color: #ff780094;
 }
 /**############################--POPUP FINE--################################*/
 /**Media query per gestire il resize e gli schermi piccoli */

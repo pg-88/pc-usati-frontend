@@ -202,14 +202,17 @@ const promoBanner = () => {
 const popUp = (id) => {
     const detail = AVAILABLE_PROD.find(p => p.id === id);
     console.log(detail.specs);
+    const shade = document.createElement('div');
+    shade.id = "popup-transparent";
+    // shade.addEventListener("click", () => document.body.removeChild(shade));
     let container = document.createElement('div');
-    container.focus();
+    shade.append(container);
     container.classList.add("popup");
     //chiudere popup
     let close = document.createElement('span');
     close.id = "close-btn";
     close.append("⊗ Chiudi");
-    close.addEventListener("click", () => document.body.removeChild(container));
+    close.addEventListener("click", () => document.body.removeChild(shade));
     //immagine prodotto
     const img = document.createElement('img');
     img.id = "popup-img";
@@ -270,9 +273,12 @@ const popUp = (id) => {
     banner.id = "promo-banner-popup";
     
     if(detail.discount) {
-        container.append(`Sconto: ${detail.discount}%\n`, banner);
+        const discountStr = document.createElement('p')
+        discountStr.append(`Sconto: ${detail.discount}%\n`);
+        discountStr.classList.add("discount-text");
+        container.append(discountStr, banner);
     }
-    return container;
+    return shade;
 }
 
 function getId(element){
